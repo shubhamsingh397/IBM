@@ -6,10 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.example.service.DetailsServiceImpl;
 import com.example.service.NameService;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     public static void main( String[] args )

@@ -12,6 +12,7 @@
 
 <bean name="address" class="com.example.model.Address">
 </bean>
+
 <bean name="detailsService" class="com.example.service.DetailsServiceImpl">
 <property name="address" ref="addressService"></property>
 <property name="name" ref="name"></property>
