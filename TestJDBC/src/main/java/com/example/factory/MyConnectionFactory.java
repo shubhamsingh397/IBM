@@ -11,9 +11,7 @@ public class MyConnectionFactory {
 
 	private MyConnectionFactory() {
 		try {
-			
-		
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/coms", "root", "shubhamsingh");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "shubhamsingh");
 
 		} catch (Exception e) {
 			e.printStackTrace();
