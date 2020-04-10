@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>SpringDemoUsingSetterInjection</name>
+	<name>SpringDemoUsingConstructorInjection</name>
 	<comment></comment>
 	<projects>
 	</projects>

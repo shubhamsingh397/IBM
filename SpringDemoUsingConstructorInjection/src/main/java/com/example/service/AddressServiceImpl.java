@@ -10,9 +10,7 @@ public class AddressServiceImpl implements AddressService{
 	private Address address;
 	public Address getAddress() {
 		
-		address.setCity("agra");
-		address.setHouseNo(123);
-		address.setPincode(202020);
+		
 		return address;
 	}
 

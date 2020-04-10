@@ -8,11 +8,15 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 <bean name="name" class="com.example.model.Name">
-
+<constructor-arg name="name" value="ABC" />
+<constructor-arg name="email" value="ABC@gmail.com" />
+<constructor-arg name="address" ref="address" />
 </bean>
 
 <bean name="address" class="com.example.model.Address">
-
+<constructor-arg name="houseNo" value="123" />
+<constructor-arg name="city" value="AGRA" />
+<constructor-arg name="pincode" value="202020" />
 </bean>
 
 <bean name="detailsService" class="com.example.service.DetailsServiceImpl">
