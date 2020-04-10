@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.example.demo.dao.ImageDaoImpl;
 import com.example.demo.dao.ImageDaoInterface;
-import com.example.model.Image;
+import com.example.demo.model.Image;
 
 public class ImageServiceImpl implements ImageServiceInterface {
 

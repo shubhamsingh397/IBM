@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.example.demo.model.Image;
 import com.example.demo.service.ImageServiceImpl;
 import com.example.demo.service.ImageServiceInterface;
-import com.example.model.Image;
 
 
 public class App 

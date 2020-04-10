@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.factory.MyConnectionFactory;
-import com.example.model.Image;
+import com.example.demo.factory.MyConnectionFactory;
+import com.example.demo.model.Image;
 
 public class ImageDaoImpl implements ImageDaoInterface{
 
