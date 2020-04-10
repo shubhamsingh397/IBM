@@ -22,6 +22,12 @@ public class ImageDaoImpl implements ImageDaoInterface{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				try {
+					connection.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		
 	}
@@ -32,7 +38,7 @@ public class ImageDaoImpl implements ImageDaoInterface{
 		prepareStatement.setString(2, image.getImageUrl());
 		prepareStatement.setBoolean(3,image.isAvailable());
 		prepareStatement.executeUpdate();
-		connection.close();
+		
 	}
 
 	public List<Image> getAllImage() throws SQLException {
@@ -50,7 +56,7 @@ public class ImageDaoImpl implements ImageDaoInterface{
 			image.setAvailable(isAvailable);
 			list.add(image);
 		}
-		connection.close();
+		
 		return list;
 	}
 
@@ -70,7 +76,8 @@ public class ImageDaoImpl implements ImageDaoInterface{
 			image.setAvailable(isAvailable);
 			list.add(image);
 		}
-		connection.close();
+		
+		
 		return list.get(0);
 	}
 
@@ -78,7 +85,7 @@ public class ImageDaoImpl implements ImageDaoInterface{
 		PreparedStatement sqlDelete = connection.prepareStatement("delete from image where imageUrl=?");
 		sqlDelete.setString(1,imageUrl);
 		System.out.println(sqlDelete.executeUpdate());
-		connection.close();
+		
 	}
 
 	public void updateImage(String imageUrl, boolean isAvailable)throws SQLException {
@@ -86,7 +93,7 @@ public class ImageDaoImpl implements ImageDaoInterface{
 		sqlUpdate.setBoolean(1,isAvailable);
 		sqlUpdate.setString(2, imageUrl);
 		System.out.println(sqlUpdate.executeUpdate());
-		connection.close();
+		
 	}
 
 
