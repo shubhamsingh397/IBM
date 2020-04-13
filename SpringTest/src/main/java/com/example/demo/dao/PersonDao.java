@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 public class PersonDao {
 
-	Person person;
+	private Person person;
 	public Person getDetails()
 	{
 		return person;
