@@ -43,7 +43,7 @@ public class ImageDaoImpl implements ImageDao {
 	public List<Image> listImagebyJdbcRowMapper() {
 		// TODO Auto-generated method stub
 		String sql = "select * from image";
-		List<Image> list = template.query(sql, new BeanPropertyRowMapper(Image.class));
+		List<Image> list = template.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 		return list;
 	}
 
@@ -52,7 +52,11 @@ public class ImageDaoImpl implements ImageDao {
 		// TODO Auto-generated method stub
 		String sql = "update image set imageUrl = ? where imageId = ?";
 		
-		template.update(sql, new Object[] {imageUrl,imageId});
+		int update = template.update(sql, new Object[] {imageUrl,imageId});
+		if(update ==0)
+			System.out.println("No Id found = "+imageId);
+		else
+			System.out.println("Data updated with imageId = "+imageId);
 	}
 
 	@Override
@@ -60,7 +64,11 @@ public class ImageDaoImpl implements ImageDao {
 		// TODO Auto-generated method stub
 String sql = "delete from image where imageId = ?";
 		
-		template.update(sql, new Object[] {imageId});
+		int update = template.update(sql, new Object[] {imageId});
+		if(update ==0)
+			System.out.println("No Id found = "+imageId);
+		else
+			System.out.println("Data deleted with imageId = "+imageId);
 	}
 
 	@Override

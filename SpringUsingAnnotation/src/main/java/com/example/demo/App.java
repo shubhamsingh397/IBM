@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.example.demo.bean.Image;
@@ -20,7 +21,8 @@ public class App
     public static void main( String[] args )
     {
     	
-    	ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+    	//ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		ImageService imageService=context.getBean("imageServiceImpl",ImageServiceImpl.class); 
 		//Image todo=imageService.createImage(new Image(UUID.randomUUID().toString(), "abc.jpg"));
 		//System.out.println(todo);
