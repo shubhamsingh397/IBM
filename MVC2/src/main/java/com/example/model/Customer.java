@@ -5,6 +5,7 @@ public class Customer {
 	private String customerName;
 	private String customerEmail;
 	private boolean isActive;
+	
 	public Customer(String customerId, String customerName, String customerEmail, boolean isActive) {
 		super();
 		this.customerId = customerId;

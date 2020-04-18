@@ -10,10 +10,12 @@
   	<description></description>
   	<servlet-class>com.example.CustomerList</servlet-class>
   </servlet>
+ 
   <servlet-mapping>
   	<servlet-name>CustomerList</servlet-name>
   	<url-pattern>/Customer_List.view</url-pattern>
   </servlet-mapping>
+ 
   <welcome-file-list>
   <welcome-file>index.html</welcome-file>
   </welcome-file-list>
