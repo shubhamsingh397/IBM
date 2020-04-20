@@ -7,6 +7,8 @@
 <title>Spring Demo</title>
 </head>
 <body>
-Student Name: ${param.Name}
+Student Name: ${param.Name}<br>
+<!--  Message: ${message}<br>-->
+Message1 : ${message1}
 </body>
 </html>
