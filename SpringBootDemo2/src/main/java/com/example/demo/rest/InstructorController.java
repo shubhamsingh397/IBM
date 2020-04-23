@@ -15,21 +15,36 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Instructor;
 import com.example.demo.service.InstructorService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
 @RestController
 @RequestMapping("/instructor")
+@Api(value="Instructor Management System", description="Operations pertaining to Instructor in Instructor Management System")
 public class InstructorController {
 
 	@Autowired
 	private InstructorService service;
 	
+	@ApiOperation(value = "Add an Instructor with InstructorDetails")
 	@PostMapping("/add")
-	public void addInstructor(@RequestBody Instructor instructor)
+	public void addInstructor(@ApiParam(value = "Instructor with nested InstructorDetails object store in database table", required = true)@RequestBody Instructor instructor)
 	{
 		service.addInstructor(instructor);
 	}
 	
+	@ApiOperation(value = "Get an Instructor with InstructorDetails by Id")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Successfully retrieved list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") 
+			})
 	@GetMapping("/getInstructor/{id}")
-	public Instructor getInstructor(@PathVariable("id")int id) throws InstuctorNotFoundException
+	public Instructor getInstructor(@ApiParam(value = "Instructor id from which instructor object will retrieve", required = true)@PathVariable("id")int id) throws InstuctorNotFoundException
 	{
 		Instructor obj = service.getInstructor(id);
 		if(obj==null)
@@ -37,14 +52,21 @@ public class InstructorController {
 		else
 			return obj;
 	}
+	@ApiOperation(value = "View a list of available Instructor with Instructor_Details", response = List.class)
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Successfully retrieved list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") 
+			})
 	@GetMapping("/getAllInstructor")
 	public List<Instructor> getAllInstructor()
 	{
 		return service.getAllInstructor();
 	}
-	
+	@ApiOperation(value = "Delete an Instructor")
 	@DeleteMapping("/deleteInstructor/{id}")
-	public void deleteInstructor(@PathVariable("id")int id) throws InstuctorNotFoundException
+	public void deleteInstructor(@ApiParam(value = "Instructor Id from which instructor object will delete from database table", required = true)@PathVariable("id")int id) throws InstuctorNotFoundException
 	{
 		Instructor obj = service.getInstructor(id);
 		if(obj==null)
@@ -53,9 +75,9 @@ public class InstructorController {
 			
 		service.deleteInstructor(id);
 	}
-	
+	@ApiOperation(value = "Update an Instructor")
 	@PutMapping("/update")
-	public void updateInstructor( @RequestBody Instructor instructor)
+	public void updateInstructor(@ApiParam(value = "Instructor with nested Instructor_Details Object to update Instructor object", required = true) @RequestBody Instructor instructor)
 	{
 		service.updateInstructor(instructor);
 	}

@@ -12,15 +12,21 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-public class Instructor {
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@Entity
+@ApiModel(description="All details about the Instructor. ")
+public class Instructor {
+	@ApiModelProperty(notes = "The database generated instructor ID")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@ApiModelProperty(notes = "The instructor first name")
 	private String firstName;
+	@ApiModelProperty(notes = "The instructor last name")
 	private String lastName;
-	
+	@ApiModelProperty(notes = "One-One Bidirectional Mapping of Instructor with Instructor_Details")
 	@OneToOne(mappedBy = "instructor",cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private InstructorDetails details;
