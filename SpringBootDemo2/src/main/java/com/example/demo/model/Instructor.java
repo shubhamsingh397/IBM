@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Instructor {
 
@@ -17,18 +21,19 @@ public class Instructor {
 	private String firstName;
 	private String lastName;
 	
-	
-	
-
-	public Instructor(String firstName, String lastName) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		
-	}
+	@OneToOne(mappedBy = "instructor",cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private InstructorDetails details;
 
 	public Instructor() {
 		super();
+	}
+
+	public Instructor(String firstName, String lastName, InstructorDetails details) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.details = details;
 	}
 
 	public int getId() {
@@ -55,12 +60,27 @@ public class Instructor {
 		this.lastName = lastName;
 	}
 
-	
+	public InstructorDetails getDetails() {
+		return details;
+	}
+
+	public void setDetails(InstructorDetails details) {
+		this.details = details;
+	}
 
 	@Override
 	public String toString() {
-		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ",]";
+		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", details=" + details
+				+ "]";
 	}
+
+	
+	
+	
+	
+	
+
+	
 	
 	
 }

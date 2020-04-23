@@ -12,52 +12,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Instructor;
-import com.example.demo.service.InstructorService;
+import com.example.demo.model.InstructorDetails;
+import com.example.demo.service.InstructorDetailsService;
 
 @RestController
-@RequestMapping("/instructor")
-public class InstructorController {
+@RequestMapping("/instructorDetails")
+public class InstructorDetailsController {
 
 	@Autowired
-	private InstructorService service;
+	private InstructorDetailsService service;
 	
 	@PostMapping("/add")
-	public void addInstructor(@RequestBody Instructor instructor)
+	public void addInstructor(@RequestBody InstructorDetails instructor)
 	{
-		service.addInstructor(instructor);
+		service.addInstructorDetails(instructor);
 	}
 	
 	@GetMapping("/getInstructor/{id}")
-	public Instructor getInstructor(@PathVariable("id")int id) throws InstuctorNotFoundException
+	public InstructorDetails getInstructor(@PathVariable("id")int id) throws InstuctorNotFoundException
 	{
-		Instructor obj = service.getInstructor(id);
+		InstructorDetails obj = service.getInstructorDetails(id);
 		if(obj==null)
 			throw new InstuctorNotFoundException("Instructor not found with id: "+id);
 		else
 			return obj;
 	}
 	@GetMapping("/getAllInstructor")
-	public List<Instructor> getAllInstructor()
+	public List<InstructorDetails> getAllInstructor()
 	{
-		return service.getAllInstructor();
+		return service.getAllInstructorDetails();
 	}
 	
 	@DeleteMapping("/deleteInstructor/{id}")
 	public void deleteInstructor(@PathVariable("id")int id) throws InstuctorNotFoundException
 	{
-		Instructor obj = service.getInstructor(id);
+		InstructorDetails obj = service.getInstructorDetails(id);
 		if(obj==null)
 			throw new InstuctorNotFoundException("Instructor not found with id: "+id);
 		else
 			
-		service.deleteInstructor(id);
+		service.deleteInstructorDetails(id);
 	}
 	
 	@PutMapping("/update")
-	public void updateInstructor( @RequestBody Instructor instructor)
+	public void updateInstructor( @RequestBody InstructorDetails instructor)
 	{
-		service.updateInstructor(instructor);
+		service.updateInstructorDetails(instructor);
 	}
 }
 

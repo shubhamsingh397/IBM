@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.InstructorDetails;
+import com.example.demo.model.Instructor;
 @Repository
 public class InstuctorDaoImpl implements InstructorDao{
 
@@ -16,20 +16,21 @@ public class InstuctorDaoImpl implements InstructorDao{
 	private EntityManager em;
 	@Override
 	@Transactional
-	public void addInstructor(InstructorDetails instructor) {
+	public void addInstructor(Instructor instructor) {
 		// TODO Auto-generated method stub
 		em.persist(instructor);
+		//instructor.setDetails(instructor.getDetails());
 	}
 
 	@Override
-	public InstructorDetails getInstructor(int id) {
+	public Instructor getInstructor(int id) {
 		// TODO Auto-generated method stub
-		return em.find(InstructorDetails.class, id);
+		return em.find(Instructor.class, id);
 	}
 
 	@Override
-	public List<InstructorDetails> getAllInstructor() {
-		List<InstructorDetails> list = em.createQuery("from InstructorDetails",InstructorDetails.class).getResultList();
+	public List<Instructor> getAllInstructor() {
+		List<Instructor> list = em.createQuery("from Instructor",Instructor.class).getResultList();
 		return list;
 	}
 
@@ -37,16 +38,18 @@ public class InstuctorDaoImpl implements InstructorDao{
 	@Transactional
 	public void deleteInstructor(int id) {
 
-		InstructorDetails obj = em.find(InstructorDetails.class,id);
+		Instructor obj = em.find(Instructor.class,id);
 		em.remove(obj);
 		
 	}
 
 	@Override
 	@Transactional
-	public void updateInstructor(InstructorDetails instructor) {
+	public void updateInstructor(Instructor instructor) {
 		// TODO Auto-generated method stub
-		em.merge(instructor);
+		Instructor obj = em.find(Instructor.class, instructor.getId());
+		em.refresh(obj);
+		
 	}
 
 }
