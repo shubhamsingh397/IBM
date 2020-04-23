@@ -28,24 +28,6 @@ public class App
          SpeakerService speakerService = context.getBean("speakerServiceImpl",SpeakerServiceImpl.class);
          EventService   eventService = context.getBean("eventServiceImpl",EventServiceImpl.class);
          
-			/*
-			 * // Speaker obj = new Speaker("Shubham","shubham@gmail.com",false); Speaker
-			 * obj = speakerService.getSpeaker(1); //speakerService.addSpeaker(obj); //Date
-			 * date = new Date(2020-11-20); //Time time = new
-			 * Time(System.currentTimeMillis()); //Event event = eventService.addEvent(new
-			 * Event("abc",date,time)); Event event = eventService.getEvent(1);
-			 * event.setSpeaker(obj); // Event event = eventService.getEvent(1);
-			 * //System.out.println("event: "+ event); //Speaker obj =
-			 * speakerService.getSpeaker(1); obj.addEvent(event);
-			 * eventService.addEvent(event); //speakerService.addSpeaker(obj);
-			 * //eventService.addEvent(event);
-			 * 
-			 * System.out.println("Details: "+ speakerService.getSpeaker(1));
-			 * 
-			 * 
-			 * speakerService.deleteSpeaker(1);
-			 */
-         
          
          int choice = 0;
          do {
