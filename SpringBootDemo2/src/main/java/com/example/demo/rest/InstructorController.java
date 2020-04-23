@@ -44,8 +44,13 @@ public class InstructorController {
 	}
 	
 	@DeleteMapping("/deleteInstrutor/{id}")
-	public void deleteInstructor(@PathVariable("id")int id)
+	public void deleteInstructor(@PathVariable("id")int id) throws InstuctorNotFoundException
 	{
+		InstructorDetails obj = service.getInstructor(id);
+		if(obj==null)
+			throw new InstuctorNotFoundException("Instructor not found with id: "+id);
+		else
+			
 		service.deleteInstructor(id);
 	}
 	
