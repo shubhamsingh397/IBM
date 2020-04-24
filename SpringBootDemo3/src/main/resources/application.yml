@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: account-service
+  h2:
+    console:
+      enabled: true
+      path: /h2
+server:
+  port: 8081
