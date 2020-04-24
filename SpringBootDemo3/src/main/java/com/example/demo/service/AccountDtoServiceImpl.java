@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -58,6 +60,7 @@ public class AccountDtoServiceImpl implements AccountDtoService{
 	public void deleteAccount(int id) {
 		//accountDao.deleteByAccountId(id);
 		accountDao.deleteById(id);
+		
 	}
 
 	@Override
@@ -65,6 +68,38 @@ public class AccountDtoServiceImpl implements AccountDtoService{
 		 Account obj = accountDao.save(account);
 		 return new AccountDto(obj.getAccountId(),obj.getAccountType(),obj.getAccountBalance());
 	}
+
+	@Override
+	public AccountDto getByAccountId(String id) {
+		Optional<Account> ob = accountDao.findByAccountId(id);
+		if (ob.isEmpty())
+			return null;
+			else
+			{
+				Account obj = ob.get();
+				return new AccountDto(obj.getAccountId(),obj.getAccountType(),obj.getAccountBalance());
+				
+			}
+	}
+
+	@Override
+	public List<AccountDto> getByAccountType(String type) {
+		List<AccountDto> list = new ArrayList<>();
+		accountDao.findByAccountType(type).forEach(account ->{list.add(new AccountDto(account.getAccountId(),account.getAccountType()
+				,account.getAccountBalance()));});
+		return list;
+	}
+
+	@Override
+	@Transactional
+	public void deleteByAccountId(String id) {
+		// TODO Auto-generated method stub
+		accountDao.removeByAccountId(id);
+	
+	}
+
+	
+	
 	
 	
 	
