@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -34,8 +35,16 @@ public class AccountDtoServiceImpl implements AccountDtoService{
 	@Override
 	public AccountDto getAccountById(int id) {
 		
-		Account obj = accountDao.findById(id).get();
-		return new AccountDto(obj.getAccountId(),obj.getAccountType(),obj.getAccountBalance());
+		Optional<Account> ob = accountDao.findById(id);
+		if (ob.isEmpty())
+			return null;
+			else
+			{
+				Account obj = ob.get();
+				return new AccountDto(obj.getAccountId(),obj.getAccountType(),obj.getAccountBalance());
+				
+			}
+		
 		
 	}
 

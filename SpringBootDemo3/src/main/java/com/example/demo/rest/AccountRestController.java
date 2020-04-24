@@ -61,15 +61,25 @@ public class AccountRestController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") 
 			})
-	public AccountDto getById(@PathVariable("id")int id)
+	public AccountDto getById(@PathVariable("id")int id) throws AccountNotFoundException
 	{
-		return accountService.getAccountById(id);
+		AccountDto obj = accountService.getAccountById(id);
+		if(obj == null)
+			throw new AccountNotFoundException("No account with id: "+id);
+		else
+			return obj;
 	}
+	
 	
 	@DeleteMapping("/delete/{id}")
 	@ApiOperation(value = "Delete an Instructor")
-	public void delete(@ApiParam(value = "Instructor Id from which account object will delete from database table", required = true)@PathVariable("id")int id)
+	public void delete(@ApiParam(value = "Instructor Id from which account object will delete from database table", required = true)
+	                                                                      @PathVariable("id")int id) throws AccountNotFoundException
 	{
+		AccountDto obj = accountService.getAccountById(id);
+		if(obj == null)
+			throw new AccountNotFoundException("No account with id: "+id);
+		else
 		accountService.deleteAccount(id);
 	}
 	
