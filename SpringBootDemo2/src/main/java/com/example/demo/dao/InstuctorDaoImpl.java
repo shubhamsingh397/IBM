@@ -47,8 +47,7 @@ public class InstuctorDaoImpl implements InstructorDao{
 	@Transactional
 	public void updateInstructor(Instructor instructor) {
 		// TODO Auto-generated method stub
-		Instructor obj = em.find(Instructor.class, instructor.getId());
-		em.refresh(obj);
+		em.merge(instructor);
 		
 	}
 
