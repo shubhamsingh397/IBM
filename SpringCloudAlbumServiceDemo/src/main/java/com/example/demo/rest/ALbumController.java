@@ -28,6 +28,8 @@ public class ALbumController {
 	@RequestMapping("/get/{id}")
 	public Object getImage(@PathVariable("id") int id)
 	{
+
 		return service.getImage(id);
+		
 	}
 }
