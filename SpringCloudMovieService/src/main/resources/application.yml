@@ -2,10 +2,11 @@ ribbon:
   eureka:
     enabled: true
 server:
-  port: 8081
+  port: 8082
+  
 spring:
   application:
-    name: Account-service
+    name: Movie-service
   cloud:
     config:
       uri: http://localhost:8888

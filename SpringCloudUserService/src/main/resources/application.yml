@@ -5,7 +5,7 @@ server:
   port: 8081
 spring:
   application:
-    name: Account-service
+    name: User-service
   cloud:
     config:
       uri: http://localhost:8888
