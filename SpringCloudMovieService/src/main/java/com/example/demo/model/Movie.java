@@ -17,16 +17,24 @@ public class Movie {
 	private String genre;
 	@Transient
 	private User user;
-	public Movie(String name, int releaseYear, String genre) {
+	private String port;
+	public Movie(String name, int releaseYear, String genre,String port) {
 		super();
 		this.name = name;
 		this.releaseYear = releaseYear;
 		this.genre = genre;
+		this.port = port;
 	}
 	public Movie() {
 		super();
 	}
 	
+	public String getPort() {
+		return port;
+	}
+	public void setPort(String port) {
+		this.port = port;
+	}
 	public User getUser() {
 		return user;
 	}

@@ -12,7 +12,7 @@ public class UserRestHandlerException {
 	@ExceptionHandler
 	public ResponseEntity<ErrorEntity> handleException(UserNotFoundException exc)
 	{
-		ErrorEntity error = new ErrorEntity(HttpStatus.NOT_FOUND.value(),exc.getMessage(), System.currentTimeMillis());
+		ErrorEntity error = new ErrorEntity(HttpStatus.FORBIDDEN.value(),exc.getMessage(), System.currentTimeMillis());
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 }

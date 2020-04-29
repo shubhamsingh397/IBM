@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,8 @@ public class SpringCloudMovieServiceApplication implements CommandLineRunner {
 
 	private MovieDao dao;
 	@Autowired
+	@Value("${server.port}")
+	private String port;
 	public SpringCloudMovieServiceApplication(MovieDao dao) {
 		super();
 		this.dao = dao;
@@ -36,12 +39,12 @@ public class SpringCloudMovieServiceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		dao.save(new Movie("Once Upon a Time in Hollywood",2019,"Drama"));
-		dao.save(new Movie("Ford Vs Ferrari",2019,"Biography"));
-		dao.save(new Movie("Good Will Hunting",1997,"Drama/Romance"));
-		dao.save(new Movie("Million Dollar Baby",2004,"Drama/Sports"));
-		dao.save(new Movie("Pulp Fiction",1994,"Drama/Crime"));
-		dao.save(new Movie("Meet Joe Black",1998,"Drama/Fantasy"));
+		dao.save(new Movie("Once Upon a Time in Hollywood",2019,"Drama",port));
+		dao.save(new Movie("Ford Vs Ferrari",2019,"Biography",port));
+		dao.save(new Movie("Good Will Hunting",1997,"Drama/Romance",port));
+		dao.save(new Movie("Million Dollar Baby",2004,"Drama/Sports",port));
+		dao.save(new Movie("Pulp Fiction",1994,"Drama/Crime",port));
+		dao.save(new Movie("Meet Joe Black",1998,"Drama/Fantasy",port));
 	}
 
 }

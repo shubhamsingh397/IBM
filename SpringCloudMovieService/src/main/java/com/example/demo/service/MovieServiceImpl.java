@@ -54,5 +54,33 @@ public class MovieServiceImpl implements MovieService{
 			return list;
 		}
 	}
+
+	@Override
+	public Movie addMovie(int userid, Movie movie) {
+		// TODO Auto-generated method stub
+	   User user = proxy.getUser(userid);
+	   if(user == null)
+	   {
+		   return null;
+	   }
+	   else
+	   {
+		   return dao.save(movie);
+	   }
+	}
+
+	@Override
+	public boolean deleteMovie(int userid, int movieId) {
+		// TODO Auto-generated method stub
+		User user = proxy.getUser(userid);
+		if(user == null)
+			return false;
+		else
+		{
+			dao.deleteById(movieId);
+			return true;
+		}
+		
+	}
 	
 }

@@ -5,14 +5,23 @@ public class User {
 	private int userId;
 	private String userName;
 	private String email;
-	public User(int userId, String userName, String email) {
+	private String port;
+	public User(int userId, String userName, String email,String port) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.email = email;
+		this.port = port;
 	}
 	public int getUserId() {
 		return userId;
+	}
+	
+	public String getPort() {
+		return port;
+	}
+	public void setPort(String port) {
+		this.port = port;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
