@@ -40,7 +40,7 @@ public class RegisterController {
 		return "userCreated";
 		
 	}
-	 @RequestMapping("/user/new")
+	 @RequestMapping("/user1/new")
 	    public String newProduct(Model model){
 	        model.addAttribute("myUser", new MyUser());
 	        return "userForm";
