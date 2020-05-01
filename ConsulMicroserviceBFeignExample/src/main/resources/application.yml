@@ -1,0 +1,19 @@
+  
+server:
+  port: 8086
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+  h2:    console:      enabled: true
+      path: /h2      
+  application:
+    name: service-b
+  cloud:
+    consul:
+      discovery:
+        register: true
+        service-name: service-b
+      host: localhost
+      port: 8500

@@ -1,0 +1,21 @@
+  
+server:
+  port: 8085
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+        
+  application:
+    name: service-a
+  cloud:
+    consul:
+      discovery:
+        register: true
+        service-name: service-a
+      host: localhost
+      port: 8500
+     
+     
+feign:  hystrix:    enabled: true
