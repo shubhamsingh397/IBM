@@ -1,4 +1,4 @@
 server:  port: 1212
 
 spring:  datasource:    url: jdbc:mysql://localhost:3306/test    username: root    password: shubhamsingh    
-  jpa:    hibernate:      ddl-auto: update    show-sql: true  data:    rest:      base-path: /api 
+  jpa:    hibernate:      ddl-auto: update    show-sql: true  data:    rest:      base-path: /api   boot:    admin:      client:        url: http://localhost:9999  application:    name: ecomm  cloud:    consul:      discovery:        register: true        service-name: ecomm      host: localhost      port: 8500

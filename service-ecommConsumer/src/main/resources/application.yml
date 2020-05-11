@@ -1,0 +1,21 @@
+feign:
+  hystrix:
+      enabled: true
+      
+server:
+  port: 8085
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+        
+  application:
+    name: ecommConsumer
+  cloud:
+    consul:
+      discovery:
+        register: true
+        service-name: ecommConsumer
+      host: localhost
+      port: 8500
