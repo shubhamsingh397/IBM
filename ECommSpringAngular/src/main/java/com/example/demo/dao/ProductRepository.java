@@ -13,4 +13,7 @@ import com.example.demo.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query
 	public List<Product> findByCategoryId(Long id);
+	
+	@Query
+	public List<Product> findByNameContaining(String name);
 }

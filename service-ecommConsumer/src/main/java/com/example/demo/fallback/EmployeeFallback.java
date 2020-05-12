@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.comm.ProductCom;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.ProductCategory;
 
 
   @Component public class EmployeeFallback implements ProductCom{
@@ -22,6 +23,24 @@ import com.example.demo.entity.Product;
 public ResponseEntity<List<Product>> findByCategoryId(long id) {
 	// TODO Auto-generated method stub
 	return new ResponseEntity("Service Down",HttpStatus.SERVICE_UNAVAILABLE);
+}
+
+@Override
+public ResponseEntity<List<ProductCategory>> getAllCategory() {
+	// TODO Auto-generated method stub
+	return new ResponseEntity("Service Down",HttpStatus.SERVICE_UNAVAILABLE);
+}
+
+@Override
+public ResponseEntity<List<Product>> getProductsByName(String name) {
+	// TODO Auto-generated method stub
+	return new ResponseEntity("Service Down",HttpStatus.SERVICE_UNAVAILABLE);
+}
+
+@Override
+public Product getProduct(long id) {
+	// TODO Auto-generated method stub
+	return null;
 }
   
   }

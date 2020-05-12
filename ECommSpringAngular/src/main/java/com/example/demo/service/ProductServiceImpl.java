@@ -23,6 +23,16 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return dao.findByCategoryId(id);
 	}
+	@Override
+	public List<Product> getProductByName(String name) {
+		// TODO Auto-generated method stub
+		return dao.findByNameContaining(name);
+	}
+	@Override
+	public Product getProduct(long id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id).get();
+	}
 
 	
 }
