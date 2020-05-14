@@ -1,4 +1,8 @@
 package com.example.demo.service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 import java.util.List;
 
@@ -14,9 +18,9 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductRepository dao;
 	@Override
-	public List<Product> getAllProducts() {
+	public Page<Product> getAllProducts(int size,int page ) {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return dao.findAll(PageRequest.of(page, size));
 	}
 	@Override
 	public List<Product> getAllProductsByCategoryId(long id) {

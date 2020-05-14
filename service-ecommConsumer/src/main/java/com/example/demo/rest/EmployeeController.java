@@ -3,6 +3,8 @@ package com.example.demo.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ public class EmployeeController {
 	private ProductCom com;
 	
 	@GetMapping("api/products")
-	public ResponseEntity<List<Product>> getProducts()
+	public PagedModel<Product> getProducts()
 	{
 		return com.getAllProducts();
 	}
@@ -31,7 +33,7 @@ public class EmployeeController {
 		return com.findByCategoryId(id);
 	}
 	@GetMapping("api/product-category")
-	public ResponseEntity<List<ProductCategory>> getAllCategory()
+	public EntityModel<ProductCategory> getAllCategory()
 	{
 		return com.getAllCategory();
 	}

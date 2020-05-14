@@ -13,7 +13,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @EnableHystrix
-
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class ServiceEcommConsumerApplication {
 
 	public static void main(String[] args) {

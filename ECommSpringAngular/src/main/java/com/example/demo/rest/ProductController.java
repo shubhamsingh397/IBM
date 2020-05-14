@@ -3,6 +3,8 @@ package com.example.demo.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,7 @@ import com.example.demo.entity.Product;
 import com.example.demo.entity.ProductCategory;
 import com.example.demo.service.ProductCategoryService;
 import com.example.demo.service.ProductService;
-
+@CrossOrigin("http://localhost:4200")
 @RestController
 public class ProductController {
 
@@ -22,9 +24,9 @@ public class ProductController {
 	@Autowired
 	private ProductCategoryService catService;
 	@GetMapping("/api/products")
-	public List<Product> getProducts()
+	public Page<Product> getProducts(@RequestParam int size,@RequestParam int page)
 	{
-		return service.getAllProducts();
+		return service.getAllProducts(size,page);
 	}
 	@GetMapping("/api/productsBycategory")
 	public List<Product> findByCategoryId(@RequestParam long id)
