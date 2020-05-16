@@ -3,6 +3,7 @@ package com.ezeeshop.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +18,20 @@ public class CartServiceImpl implements CartService{
 
 	private CartRepository dao;
 	private ProductClient productClient;
-	//private CustomerClient customerClient;
+	private static final String QUEUE= "cart-queue";
+	private static final String DELETECARTBYUSERNAME_QUEUE = "deleteCartByUserName-queue";
+	private static final String UPDATECARTBY_QUEUE = "updateCart-queue";
 	@Autowired
 	public CartServiceImpl(CartRepository dao, ProductClient productClient) {
 		super();
 		this.dao = dao;
 		this.productClient = productClient;
-		//this.customerClient = customerClient;
+		
 	}
 	@Override
-	public Cart addToCart(Cart cart) {
-		return dao.save(cart);
+	@RabbitListener(queues = QUEUE)
+	public void addToCart(Cart cart) {
+		dao.save(cart);
 	}
 	@Override
 	public CartObject getCart(String customerUserName) {
@@ -50,24 +54,21 @@ public class CartServiceImpl implements CartService{
 		return obj;
 	}
 	@Override
+	@RabbitListener(queues = DELETECARTBYUSERNAME_QUEUE)
 	public void deleteCart(String customerUserName) {
 		dao.deleteByCustomerUserName(customerUserName);
 		
 	}
 	@Override
+	@RabbitListener(queues = UPDATECARTBY_QUEUE)
 	public void updateProductQuantity(Cart cart) {
-		// TODO Auto-generated method stub
-		//Cart cart = dao.findByCustomerUserNameAndProductId(customerUserName, productId);
+
 		if(cart.getQuantity()==0)
 			dao.deleteByCustomerUserNameAndProductId(cart.getCustomerUserName(), cart.getProductId());
 		else
 		dao.updateProduct(cart.getCustomerUserName(), cart.getProductId(), cart.getQuantity());
 	}
-	@Override
-	public void deleteProduct(String customerUserName, Long productId) {
-		dao.deleteByCustomerUserNameAndProductId(customerUserName, productId);
-		
-	}
+
 	
 
 	

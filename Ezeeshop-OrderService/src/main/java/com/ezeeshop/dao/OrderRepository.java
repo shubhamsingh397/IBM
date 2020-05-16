@@ -38,15 +38,31 @@ public class OrderRepository {
 	}
 	
 	@Transactional
-	public void placeOrder(Order order, ShippingDetails shippingDetails, List<Product> products)
+	public Order placeOrder(Order order, ShippingDetails shippingDetails, List<Product> products)
 	{
 		
 		em.persist(shippingDetails);
 		em.persist(order);
 		order.setProduct(products);
 		order.setAddress(shippingDetails);
+		return getOderById(order.getOrderId());
 		
 		
+	}
+	@Transactional
+	public void cancelOrder(Long id)
+	{
+		Order order = getOderById(id);
+		if(order != null)
+			order.setOrderStatus("Cancelled");
+	}
+	
+	@Transactional
+	public void deleteOrder(Long id)
+	{
+		Order order = getOderById(id);
+		if(order != null)
+			em.remove(order);
 	}
 	
 	
