@@ -14,19 +14,36 @@ import javax.persistence.Table;
 
 import com.ezeeshop.dto.Product;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "orders")
+@ApiModel(description="Model Class of Order Table")
 public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(notes = "Id of Order")
 	private Long orderId;
+	
+	@ApiModelProperty(notes = "CustomerUserName to which Order is associated")
 	private String customerUserName;
+	
+	@ApiModelProperty(notes = "OrderDate of Order")
 	private LocalDate orderDate;
+	
+	@ApiModelProperty(notes = "OrderStatus of Order")
 	private String orderStatus;
+	
+	@ApiModelProperty(notes = "Total amount of Order")
 	private int totalAmount;
+	
+	@ApiModelProperty(notes = "Shipping Details to which order is shipped")
 	@OneToOne
 	private ShippingDetails address;
+	
+	@ApiModelProperty(notes = "List of products in particular Order")
 	@ManyToMany
 	private List<Product> product = new ArrayList<Product>();
 

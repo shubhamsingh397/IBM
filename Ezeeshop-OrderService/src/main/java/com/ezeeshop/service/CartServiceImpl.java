@@ -8,24 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezeeshop.dao.CartRepository;
+import com.ezeeshop.dao.ProductDAO;
 import com.ezeeshop.dto.CartObject;
 import com.ezeeshop.dto.Product;
 import com.ezeeshop.entity.Cart;
-import com.ezeeshop.feign.ProductClient;
 
 @Service
 public class CartServiceImpl implements CartService{
 
 	private CartRepository dao;
-	private ProductClient productClient;
+	
+	@Autowired
+	private ProductDAO productDao;
 	private static final String QUEUE= "cart-queue";
 	private static final String DELETECARTBYUSERNAME_QUEUE = "deleteCartByUserName-queue";
 	private static final String UPDATECARTBY_QUEUE = "updateCart-queue";
 	@Autowired
-	public CartServiceImpl(CartRepository dao, ProductClient productClient) {
+	public CartServiceImpl(CartRepository dao) {
 		super();
 		this.dao = dao;
-		this.productClient = productClient;
+		
 		
 	}
 	@Override
@@ -42,7 +44,7 @@ public class CartServiceImpl implements CartService{
 		int totalPrice = 0;
 		for(Cart objCart : cart)
 		{
-			Product product = productClient.getProduct(objCart.getProductId());
+			Product product = productDao.findById(objCart.getProductId()).get();
 			product.setQuantity(objCart.getQuantity());
 			totalPrice += product.getProductPrice()*objCart.getQuantity();
 			productList.add(product);

@@ -1,12 +1,21 @@
 package com.ezeeshop.entity;
 
-public class Cart {
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(description="Model Class of Cart Table")
+public class Cart {
+	
+	@ApiModelProperty(notes = "Id of Cart")
 	private Long CartId;
 	
+	@ApiModelProperty(notes = "Quantiy of product in Cart")
 	private int quantity;
 	
+	@ApiModelProperty(notes = "ProductId of product in Cart")
 	private Long productId;
+	
+	@ApiModelProperty(notes = "CustomerUserName to which cart is associated")
 	private String customerUserName;
 	public Long getCartId() {
 		return CartId;

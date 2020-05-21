@@ -4,15 +4,29 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel(description="Model Class of Order Table")
 public class Order {
-
+	@ApiModelProperty(notes = "Id of Order")
 	private Long orderId;
+	
+	@ApiModelProperty(notes = "CustomerUserName to which Order is associated")
 	private String customerUserName;
+	
+	@ApiModelProperty(notes = "OrderDate of Order")
 	private LocalDate orderDate;
+	
+	@ApiModelProperty(notes = "OrderStatus of Order")
 	private String orderStatus;
+	
+	@ApiModelProperty(notes = "Total amount of Order")
 	private int totalAmount;
 
+	@ApiModelProperty(notes = "Shipping Details to which order is shipped")
 	private ShippingDetails address;
+	
+	@ApiModelProperty(notes = "List of products in particular Order")
 	private List<Product> product = new ArrayList<Product>();
 
 	

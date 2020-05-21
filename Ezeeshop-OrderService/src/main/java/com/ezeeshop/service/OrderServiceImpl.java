@@ -26,6 +26,7 @@ public class OrderServiceImpl implements OrderService{
 	public void saveOrder(Order order) {
 		System.out.println("Items Recieved: " + order);
 		CartObject cart = cartService.getCart(order.getCustomerUserName());
+		//System.out.println(cart.getProductList());
 		if(cart != null)
 		{
 		order.setTotalAmount(cart.getTotalPrice());

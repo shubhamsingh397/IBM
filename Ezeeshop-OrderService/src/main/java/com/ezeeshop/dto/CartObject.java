@@ -2,11 +2,21 @@ package com.ezeeshop.dto;
 
 import java.util.List;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel(description="Model Class of Cart Helper")
 public class CartObject {
 
+	@ApiModelProperty(notes = "CustomerUserName to which cart is associated")
 	private String customerUserName;
+	
+	@ApiModelProperty(notes = "List of product in CartHelper ")
 	private List<Product> productList;
+	
+	@ApiModelProperty(notes = "TotalPrice of products in Cart")
 	private int totalPrice;
+	
+	
 	public String getCustomerUserName() {
 		return customerUserName;
 	}

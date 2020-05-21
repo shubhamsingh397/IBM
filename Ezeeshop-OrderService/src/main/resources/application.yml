@@ -5,19 +5,25 @@ spring:
     consul:
       discovery:
         register: true
-        service-name: order-consumer
+        service-name: order-consumer-service
       host: localhost
       port: 8500
-  h2:
-    console:
-      enabled: true
-      path: /h2
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
   application:
-    name: order-consumer
-      jpa:    show-sql: true
+    name: order-consumer-service
+      jpa:    show-sql: true    hibernate:      ddl-auto: update
     
   rabbitmq:
-    host: localhost
-    password: guest
-    port: 5672
-    username: guest
+   host: localhost
+   password: guest
+   port: 5672
+   username: guest
+    
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/coms
+    username: root
+    password: shubhamsingh

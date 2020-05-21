@@ -1,16 +1,16 @@
 server:
-  port: 1115
+  port: 8085
 spring:
   cloud:
     consul:
       discovery:
         register: true
-        service-name: order-producer
+        service-name: order-producer-service
       host: localhost
       port: 8500
   
   application:
-    name: order-producer
+    name: order-producer-service
     
     
   rabbitmq:

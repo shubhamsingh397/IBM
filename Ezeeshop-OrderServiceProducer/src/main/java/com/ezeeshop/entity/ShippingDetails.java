@@ -1,21 +1,45 @@
 package com.ezeeshop.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description="Model Class of Shipping Address Table")
 public class ShippingDetails {
 
-	
+	@ApiModelProperty(notes = "Id of Shipping details")
 	private Long shippingId;
+	
+	@ApiModelProperty(notes = "firstName of customer to which order is shipped")
 	private String firstName;
+	
+	@ApiModelProperty(notes = "Lastname of customer to which order is shipped")
 	private String lastName;
+	
+	@ApiModelProperty(notes = "PhoneNo of customer to which order is shipped")
 	private String phoneNo;
+	
+	@ApiModelProperty(notes = "Email of customer to which order is shipped")
 	private String email;
 	
+	@ApiModelProperty(notes = "AddressLine1 of customer to which order is shipped")
 	private String addressLine1;
+	
+	@ApiModelProperty(notes = "AddressLine2 of customer to which order is shipped")
 	private String addressLine2;
+	
+	@ApiModelProperty(notes = "City of customer to which order is shipped")
 	private String city;
+	
+	@ApiModelProperty(notes = "State of customer to which order is shipped")
 	private String state;
+	
+	@ApiModelProperty(notes = "Country of customer to which order is shipped")
 	private String country;
+	
+	@ApiModelProperty(notes = "ZipCode of customer to which order is shipped")
 	private String zipCode;
 
+	@ApiModelProperty(notes = "OrderDetails of customer to which order is shipped")
 	private Order orders;
 	
 	public Long getShippingId() {

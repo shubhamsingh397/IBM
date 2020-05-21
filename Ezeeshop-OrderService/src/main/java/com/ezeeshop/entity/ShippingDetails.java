@@ -6,23 +6,49 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description="Model Class of Shipping Address Table")
 public class ShippingDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(notes = "Id of Shipping details")
 	private Long shippingId;
+	
+	@ApiModelProperty(notes = "firstName of customer to which order is shipped")
 	private String firstName;
+	
+	@ApiModelProperty(notes = "Lastname of customer to which order is shipped")
 	private String lastName;
+	
+	@ApiModelProperty(notes = "PhoneNo of customer to which order is shipped")
 	private String phoneNo;
+	
+	@ApiModelProperty(notes = "Email of customer to which order is shipped")
 	private String email;
 	
+	@ApiModelProperty(notes = "AddressLine1 of customer to which order is shipped")
 	private String addressLine1;
+	
+	@ApiModelProperty(notes = "AddressLine2 of customer to which order is shipped")
 	private String addressLine2;
+	
+	@ApiModelProperty(notes = "City of customer to which order is shipped")
 	private String city;
+	
+	@ApiModelProperty(notes = "State of customer to which order is shipped")
 	private String state;
+	
+	@ApiModelProperty(notes = "Country of customer to which order is shipped")
 	private String country;
+	
+	@ApiModelProperty(notes = "ZipCode of customer to which order is shipped")
 	private String zipCode;
+	
+	@ApiModelProperty(notes = "OrderDetails of customer to which order is shipped")
 	@OneToOne(mappedBy = "address")
 	private Order orders;
 	

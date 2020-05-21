@@ -43,6 +43,7 @@ public class OrderRepository {
 		
 		em.persist(shippingDetails);
 		em.persist(order);
+		System.out.println(products);
 		order.setProduct(products);
 		order.setAddress(shippingDetails);
 		return getOderById(order.getOrderId());
