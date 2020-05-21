@@ -2,6 +2,8 @@ package com.ezeeshop.dto;
 
 import java.util.List;
 
+import com.ezeeshop.entity.Product;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description="Model Class of Cart Helper")

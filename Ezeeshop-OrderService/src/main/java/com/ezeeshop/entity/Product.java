@@ -1,4 +1,4 @@
-package com.ezeeshop.dto;
+package com.ezeeshop.entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import com.ezeeshop.entity.Order;
 @Entity
 public class Product
 {

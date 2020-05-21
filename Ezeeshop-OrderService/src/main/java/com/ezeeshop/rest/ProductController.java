@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezeeshop.dao.ProductDAO;
-import com.ezeeshop.dto.Product;
+import com.ezeeshop.entity.Product;
 
 @RestController
 public class ProductController {

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.ezeeshop.dao.CartRepository;
 import com.ezeeshop.dao.ProductDAO;
 import com.ezeeshop.dto.CartObject;
-import com.ezeeshop.dto.Product;
 import com.ezeeshop.entity.Cart;
+import com.ezeeshop.entity.Product;
 
 @Service
 public class CartServiceImpl implements CartService{
@@ -39,6 +39,11 @@ public class CartServiceImpl implements CartService{
 	public CartObject getCart(String customerUserName) {
 		// TODO Auto-generated method stub
 		List<Cart> cart = dao.findByCustomerUserName(customerUserName);
+		
+		if(cart.isEmpty())
+			return null;
+		else
+		{
 		CartObject obj = new CartObject(); 
 		List<Product> productList = new ArrayList<Product>();
 		int totalPrice = 0;
@@ -54,7 +59,9 @@ public class CartServiceImpl implements CartService{
 		obj.setProductList(productList);
 		obj.setTotalPrice(totalPrice);
 		return obj;
+		}
 	}
+	
 	@Override
 	@RabbitListener(queues = DELETECARTBYUSERNAME_QUEUE)
 	public void deleteCart(String customerUserName) {

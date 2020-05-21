@@ -9,8 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ezeeshop.dto.Product;
 import com.ezeeshop.entity.Order;
+import com.ezeeshop.entity.Product;
 import com.ezeeshop.entity.ShippingDetails;
 
 @Repository

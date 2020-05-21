@@ -2,7 +2,7 @@ package com.ezeeshop.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezeeshop.dto.CartObject;
@@ -22,7 +22,7 @@ public class CartController {
 	
 	
 	
-	@GetMapping("/cart/{username}")
+	@GetMapping("/cart")
 	@ApiOperation(value = "Retrieving the cart associated with customerUserName")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -30,9 +30,13 @@ public class CartController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") 
 			})
-	public CartObject getCart(@PathVariable("username")String userName)
+	public CartObject getCart(@RequestParam String userName) throws CartExceptionClass
 	{
-		return service.getCart(userName);
+		CartObject obj = service.getCart(userName);
+		if(obj == null)
+			throw new CartExceptionClass("No items in cart are available with customerUserName: "+ userName);
+		else
+			return obj;
 	}
 	
 	

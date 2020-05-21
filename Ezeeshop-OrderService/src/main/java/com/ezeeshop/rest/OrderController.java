@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezeeshop.entity.Order;
@@ -26,7 +26,7 @@ public class OrderController {
 	
 	
 	
-	@GetMapping("/ordersByUserName/{username}")
+	@GetMapping("/ordersByUserName")
 	@ApiOperation(value = "Retrieving the List of Orders associated with customerUserName")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -34,12 +34,16 @@ public class OrderController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") 
 			})
-	public ResponseEntity<List<Order>> getOrder(@PathVariable("username")String userName)
+	public ResponseEntity<List<Order>> getOrder(@RequestParam String userName) throws CartExceptionClass
 	{
-		return ResponseEntity.status(HttpStatus.OK).body(service.getOrderByUserName(userName));
+		List<Order> orderList = service.getOrderByUserName(userName);
+		if(orderList.isEmpty())
+			throw new CartExceptionClass("No orders available with customerUserName: "+ userName);
+		else
+		return ResponseEntity.status(HttpStatus.OK).body(orderList);
 	}
 	
-	@GetMapping("/orders/{id}")
+	@GetMapping("/orders")
 	@ApiOperation(value = "Retrieving Order with orderId associated with customerUserName")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -47,9 +51,13 @@ public class OrderController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") 
 			})
-	public ResponseEntity<Order> getOrderById(@PathVariable("id")Long id)
+	public ResponseEntity<Order> getOrderById(@RequestParam Long id) throws CartExceptionClass
 	{
-		return ResponseEntity.status(HttpStatus.OK).body(service.getOrderById(id));
+		Order order = service.getOrderById(id);
+		if(order == null)
+			throw new CartExceptionClass("No order available with Id: "+ id);
+		else
+		return ResponseEntity.status(HttpStatus.OK).body(order);
 	}
 	
 }
